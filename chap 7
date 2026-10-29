@@ -1,0 +1,346 @@
+import java.util.Random;
+import java.util.Scanner;
+public class Main {
+    static Scanner input = new Scanner(System.in);
+
+    static void Roof() {
+        System.out.println("    / \\");
+        System.out.println("   /   \\");
+        System.out.println("  /     \\");
+        System.out.println(" /       \\");
+    }
+
+    static void base() {
+        System.out.println("-----------");
+        System.out.println("|         |");
+        System.out.println("|         |");
+        System.out.println("|         |");
+        System.out.println("|         |");
+        System.out.println("-----------");
+    }
+
+    static void walk() {
+        System.out.println("    **");
+        System.out.println("    ***********");
+        System.out.println();
+    }
+
+    static double inchTocenti(double inch) {
+        return inch * 2.54;
+    }
+
+    static double feetTocenti(double feet) {
+        return feet * 30;
+    }
+
+    static double yardsTomet(double yards) {
+        return yards * 0.91;
+    }
+
+    static double milesTokilo(double miles) {
+        return miles * 1.6;
+    }
+
+    static double centiToinch(double centi) {
+        return centi / 2.54;
+    }
+
+    static double centiTofeet(double centi) {
+        return centi / 30;
+    }
+
+    static double metToyards(double met) {
+        return met / 0.91;
+    }
+
+    static double kiloTomiles(double kilo) {
+        return kilo / 1.6;
+    }
+
+    static void metricCon2() {
+        System.out.print("Enter a number: ");
+        double number = input.nextDouble();
+
+        System.out.println("Convert:");
+        System.out.println("1. Inches to Centimeters       5. Centimeters to Inches");
+        System.out.println("2. Feet to Centimeters         6. Centimeters to Feet");
+        System.out.println("3. Yards to Meters             7. Meters to Yards");
+        System.out.println("4. Miles to Kilometers         8. Kilometers to Miles");
+
+        System.out.print("Enter your choice: ");
+        int choice = input.nextInt();
+
+        switch (choice) {
+            case 1:
+                System.out.println(number + " inches equals " + inchTocenti(number) + " centimeters.");
+                break;
+            case 2:
+                System.out.println(number + " feet equals " + feetTocenti(number) + " centimeters.");
+                break;
+            case 3:
+                System.out.println(number + " yards equals " + yardsTomet(number) + " meters.");
+                break;
+            case 4:
+                System.out.println(number + " miles equals " + milesTokilo(number) + " kilometers.");
+                break;
+            case 5:
+                System.out.println(number + " centimeters equals " + centiToinch(number) + " inches.");
+                break;
+            case 6:
+                System.out.println(number + " centimeters equals " + centiTofeet(number) + " feet.");
+                break;
+            case 7:
+                System.out.println(number + " meters equals " + metToyards(number) + " yards.");
+                break;
+            case 8:
+                System.out.println(number + " kilometers equals " + kiloTomiles(number) + " miles.");
+                break;
+            default:
+                System.out.println("Invalid choice!");
+        }
+    }
+
+    static void prinum() {
+        System.out.print("Enter a number: ");
+        int number = input.nextInt();
+
+        if (isPrime(number)) {
+            System.out.println(number + " is a prime number.");
+        } else {
+            System.out.println(number + " is not a prime number.");
+        }
+    }
+
+    static boolean isPrime(int number) {
+        if (number < 2) {
+            return false;
+        }
+
+        for (int i = 2; i < number; i++) {
+            if (number % i == 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    static void addSpaces(int spaces) {
+        for (int i = 0; i < spaces; i++) {
+            System.out.print(" ");
+        }
+    }
+
+    static void drawBar(int stars) {
+        for (int i = 0; i < stars; i++) {
+            System.out.print("*");
+        }
+        System.out.println();
+    }
+
+    static void isoTriangle() {
+        System.out.print("Enter the size: ");
+        int size = input.nextInt();
+
+        for (int i = 1; i <= size; i++) {
+            addSpaces(size - i);
+            drawBar(2 * i - 1);
+        }
+    }
+
+    static String getDollarAmount(int pennies, int nickels, int dimes, int quarters) {
+        double total = (pennies * 0.01) + (nickels * 0.05)
+                + (dimes * 0.10) + (quarters * 0.25);
+
+        return "$" + String.format("%.2f", total);
+    }
+
+    static void addCoins() {
+        System.out.println("Enter your total coins:");
+
+        System.out.print("Quarters: ");
+        int quarter = input.nextInt();
+
+        System.out.print("Dimes: ");
+        int dimes = input.nextInt();
+
+        System.out.print("Nickels: ");
+        int nickels = input.nextInt();
+
+        System.out.print("Pennies: ");
+        int pennies = input.nextInt();
+
+        String result = getDollarAmount(pennies, nickels, dimes, quarter);
+        System.out.println("Total: " + result);
+        System.out.println();
+    }
+
+    static boolean perfectSquare(int num) {
+        int root = (int) Math.sqrt(num);
+        return root * root == num;
+    }
+
+    static void pythagoreanTriple() {
+        System.out.println("Pythagorean Triples (A and B < 100):");
+
+        for (int a = 1; a < 100; a++) {
+            for (int b = a; b < 100; b++) {
+                int cSquared = (a * a) + (b * b);
+
+                if (perfectSquare(cSquared)) {
+                    int c = (int) Math.sqrt(cSquared);
+                    System.out.println("A = " + a + ", B = " + b + ", C = " + c);
+                }
+            }
+        }
+
+        System.out.println();
+    }
+
+    static void perfectInt() {
+        System.out.println("Perfect integers up to 100:");
+
+        for (int number = 1; number <= 100; number++) {
+            if (per(number)) {
+                System.out.println(number);
+            }
+        }
+
+        System.out.println();
+    }
+
+    static boolean per(int number) {
+        int sum = 0;
+
+        for (int i = 1; i < number; i++) {
+            if (number % i == 0) {
+                sum = sum + i;
+            }
+        }
+        return sum == number;
+    }
+
+    static void hiLO() {
+        Random random = new Random();
+
+        int points = 1000;
+        int guesses = 0;
+
+        System.out.println("High Low Game");
+        System.out.println();
+        System.out.println("RULES");
+        System.out.println("Numbers 1 through 6 are low");
+        System.out.println("Numbers 8 through 13 are high");
+        System.out.println("Number 7 is neither high or low");
+        System.out.println();
+
+        while (points > 0) {
+            System.out.println("You have " + points + " points.");
+
+            System.out.print("Enter points to risk: ");
+            int risk = input.nextInt();
+
+            if (risk <= 0 || risk > points) {
+                System.out.println("Invalid points!");
+            } else {
+                System.out.print("Predict (1=High, 0=Low): ");
+                int predict = input.nextInt();
+
+                int number = random.nextInt(13) + 1;
+                System.out.println("Number is " + number);
+
+                guesses++;
+
+                if (number == 7) {
+                    points = points - risk;
+                    System.out.println("You lose!");
+                } else if (number >= 8 && predict == 1) {
+                    points = points + (risk * 2);
+                    System.out.println("You win!");
+                } else if (number <= 6 && predict == 0) {
+                    points = points + (risk * 2);
+                    System.out.println("You win!");
+                } else {
+                    points = points - risk;
+                    System.out.println("You lose!");
+                }
+                System.out.println();
+            }
+        }
+        System.out.println("game over!");
+        System.out.println("Final points: " + points);
+        System.out.println("Number of guesses: " + guesses);
+    }
+
+    static void nim() {
+        Random random = new Random();
+        int stones = random.nextInt(16) + 15;
+        while (stones > 0) {
+            System.out.println("There are " + stones + " stones.");
+            System.out.print("How many would you like? ");
+            int choice = input.nextInt();
+
+            if (choice < 1 || choice > 3 || choice > stones) {
+                System.out.println("Invalid choice!");
+            } else {
+                stones = stones - choice;
+
+                if (stones == 0) {
+                    System.out.println("You took the last stone.");
+                    System.out.println("The computer wins!");
+                } else {
+                    int computer = random.nextInt(3) + 1;
+                    while (computer > stones) {
+                        computer = random.nextInt(3) + 1;
+                    }
+                    System.out.println("The computer takes " + computer + " stones.");
+                    stones = stones - computer;
+                    if (stones == 0) {
+                        System.out.println("The computer took the last stone.");
+                        System.out.println("You win!");
+                    }
+                }
+            }
+        }
+    }
+    static void giveHint(int guess, int secret) {
+        if (guess < secret) {
+            System.out.println("Hint: try a higher number");
+        } else if (guess > secret) {
+            System.out.println("Hint: try a lower number");
+        }
+    }
+    static void guessingGame() {
+        Scanner input = new Scanner(System.in);
+        int secret = 16;
+        int guess = 0;
+
+        while (guess != secret) {
+            System.out.print("Enter a number between 1 and 20: ");
+            guess = input.nextInt();
+
+            if (guess == secret) {
+                System.out.println("You won!");
+            } else {
+                giveHint(guess, secret);
+            }
+        }
+    }
+        public static void main(String[] args) {
+            Roof();
+            base();
+            walk();
+            metricCon2();
+            prinum();
+            isoTriangle();
+            addCoins();
+            pythagoreanTriple();
+            perfectInt();
+            hiLO();
+            nim();
+            guessingGame();
+
+        }
+    }
+
+
